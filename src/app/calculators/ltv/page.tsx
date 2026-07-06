@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { calculateLtv, type LtvInput, type LtvResult } from "@/lib/calculators/ltv";
 import { AdSlot } from "@/components/ads/AdSlot";
+import { CalculatorSeoGuide } from "@/components/content/CalculatorSeoGuide";
 
 function formatKrw(v: number) { return `${Math.round(v / 10_000).toLocaleString()}만원`; }
 
@@ -64,6 +65,8 @@ export default function LtvPage() {
           <AdSlot slot="afterResult" className="my-4" />
         </>
       )}
+
+      <CalculatorSeoGuide id="ltv" />
     </div>
   );
 }

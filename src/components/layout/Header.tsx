@@ -10,13 +10,14 @@ const NAV_ITEMS = [
   { href: "/calculators/ltv", label: "LTV" },
   { href: "/calculators/acquisition-tax", label: "취득세" },
   { href: "/calculators/brokerage-fee", label: "중개수수료" },
+  { href: "/guides", label: "가이드" },
 ];
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+    <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/85 shadow-sm backdrop-blur-xl dark:border-gray-800 dark:bg-slate-950/85">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14">
           <Link href="/" className="text-lg font-bold text-blue-600">
@@ -39,7 +40,7 @@ export function Header() {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-gray-600 hover:text-blue-600"
+            className="md:hidden rounded-lg p-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 dark:text-gray-200 dark:hover:bg-blue-950/50 dark:hover:text-blue-200"
             aria-label="메뉴"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -54,7 +55,7 @@ export function Header() {
 
         {/* Mobile nav */}
         {isOpen && (
-          <nav className="md:hidden pb-4 border-t border-gray-100 pt-2">
+          <nav className="md:hidden pb-4 border-t border-gray-100 pt-2 dark:border-gray-800">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}

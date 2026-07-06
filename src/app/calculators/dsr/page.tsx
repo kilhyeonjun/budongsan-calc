@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { calculateDsr, type DsrInput, type DsrResult } from "@/lib/calculators/dsr";
 import { AdSlot } from "@/components/ads/AdSlot";
+import { CalculatorSeoGuide } from "@/components/content/CalculatorSeoGuide";
 
 export default function DsrPage() {
   const [input, setInput] = useState<DsrInput>({
@@ -64,6 +65,8 @@ export default function DsrPage() {
           <AdSlot slot="afterResult" className="my-4" />
         </>
       )}
+
+      <CalculatorSeoGuide id="dsr" />
     </div>
   );
 }

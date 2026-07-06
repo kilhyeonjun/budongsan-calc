@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { calculateHomeUpgrade, type HomeUpgradeInput, type HomeUpgradeResult } from "@/lib/calculators/homeUpgrade";
 import { AdSlot } from "@/components/ads/AdSlot";
+import { CalculatorSeoGuide } from "@/components/content/CalculatorSeoGuide";
 
 function formatKrw(value: number): string {
   if (Math.abs(value) >= 100_000_000) {
@@ -185,6 +186,8 @@ export default function HomeUpgradePage() {
             {/* Ad after result */}
             <AdSlot slot="afterResult" className="my-4" />
 
+            <CalculatorSeoGuide id="home-upgrade" />
+
             {/* Disclaimer */}
             <p className="text-xs text-gray-400">
               ※ 본 계산은 참고용 추정치입니다. 양도소득세는 비과세 요건(1주택 2년 이상 보유) 충족 시 제외했습니다.
@@ -192,6 +195,7 @@ export default function HomeUpgradePage() {
             </p>
           </>
         )}
+        {!result && <CalculatorSeoGuide id="home-upgrade" />}
       </div>
 
       {/* Desktop Sidebar */}

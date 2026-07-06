@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { calculateBrokerageFee, type BrokerageFeeInput, type BrokerageFeeResult, type TransactionType } from "@/lib/calculators/brokerageFee";
 import { AdSlot } from "@/components/ads/AdSlot";
+import { CalculatorSeoGuide } from "@/components/content/CalculatorSeoGuide";
 
 function formatKrw(v: number) { return `${Math.round(v / 10_000).toLocaleString()}만원`; }
 
@@ -93,6 +94,8 @@ export default function BrokerageFeePage() {
           <AdSlot slot="afterResult" className="my-4" />
         </>
       )}
+
+      <CalculatorSeoGuide id="brokerage-fee" />
     </div>
   );
 }

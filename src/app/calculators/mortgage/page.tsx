@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { calculateMortgage, type MortgageInput, type MortgageResult, type RepaymentType } from "@/lib/calculators/mortgage";
 import { AdSlot } from "@/components/ads/AdSlot";
+import { CalculatorSeoGuide } from "@/components/content/CalculatorSeoGuide";
 
 function formatKrw(value: number): string {
   if (Math.abs(value) >= 100_000_000) {
@@ -124,6 +125,8 @@ export default function MortgagePage() {
           <AdSlot slot="afterResult" className="my-4" />
         </>
       )}
+
+      <CalculatorSeoGuide id="mortgage" />
     </div>
   );
 }
