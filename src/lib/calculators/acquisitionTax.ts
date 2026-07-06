@@ -75,8 +75,9 @@ export function calculateAcquisitionTax(input: AcquisitionTaxInput): Acquisition
   // 지방교육세: 취득세의 10%
   const localEducationTax = Math.round(acquisitionTax * 0.1);
 
-  // 농어촌특별세: 85㎡ 초과시 취득세의 10% (전용 85㎡ 이하는 비과세)
-  const ruralTax = area > 85 ? Math.round(acquisitionTax * 0.1) : 0;
+  // 농어촌특별세: 전용 85㎡ 초과 주택은 통상 과세표준의 0.2%를 더한다.
+  // 취득세율의 10%가 아니므로 9억 초과 주택 등에서 과대 계산하지 않도록 분리한다.
+  const ruralTax = area > 85 ? Math.round(propertyValue * 0.002) : 0;
 
   const totalTax = acquisitionTax + localEducationTax + ruralTax;
 

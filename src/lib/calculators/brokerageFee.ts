@@ -43,6 +43,8 @@ const SALE_RATES: RateTable[] = [
   { limit: 200_000_000, rate: 0.5, cap: 800_000 },
   { limit: 600_000_000, rate: 0.4, cap: 0 },
   { limit: 900_000_000, rate: 0.5, cap: 0 },
+  { limit: 1_200_000_000, rate: 0.5, cap: 0 },
+  { limit: 1_500_000_000, rate: 0.6, cap: 0 },
   { limit: Infinity, rate: 0.7, cap: 0 },
 ];
 
@@ -53,7 +55,9 @@ const LEASE_RATES: RateTable[] = [
   { limit: 50_000_000, rate: 0.5, cap: 200_000 },
   { limit: 100_000_000, rate: 0.4, cap: 300_000 },
   { limit: 600_000_000, rate: 0.3, cap: 0 },
-  { limit: Infinity, rate: 0.4, cap: 0 },
+  { limit: 1_200_000_000, rate: 0.4, cap: 0 },
+  { limit: 1_500_000_000, rate: 0.5, cap: 0 },
+  { limit: Infinity, rate: 0.6, cap: 0 },
 ];
 
 function findRate(amount: number, table: RateTable[]): { rate: number; cap: number } {

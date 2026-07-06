@@ -95,8 +95,8 @@ describe("calculateAcquisitionTax", () => {
     });
     expect(result.taxRate).toBe(3);
     expect(result.acquisitionTax).toBe(30_000_000);
-    expect(result.ruralTax).toBe(3_000_000); // 85㎡ 초과
-    expect(result.totalTax).toBe(36_000_000);
+    expect(result.ruralTax).toBe(2_000_000); // 85㎡ 초과: 과세표준의 0.2%
+    expect(result.totalTax).toBe(35_000_000);
   });
 
   it("1주택 7.5억 → 세율 약 2%", () => {
@@ -132,13 +132,28 @@ describe("calculateBrokerageFee", () => {
     expect(result.maxFee).toBe(3_500_000);
   });
 
-  it("매매 9.5억 → 0.7%", () => {
+  it("매매 9.5억 → 0.5%", () => {
     const result = calculateBrokerageFee({
       transactionType: "sale",
       transactionAmount: 950_000_000,
     });
-    expect(result.maxRate).toBe(0.7);
-    expect(result.maxFee).toBe(6_650_000);
+    expect(result.maxRate).toBe(0.5);
+    expect(result.maxFee).toBe(4_750_000);
+  });
+
+  it("매매 13억 → 0.6%, 16억 → 0.7%", () => {
+    const mid = calculateBrokerageFee({
+      transactionType: "sale",
+      transactionAmount: 1_300_000_000,
+    });
+    const high = calculateBrokerageFee({
+      transactionType: "sale",
+      transactionAmount: 1_600_000_000,
+    });
+    expect(mid.maxRate).toBe(0.6);
+    expect(mid.maxFee).toBe(7_800_000);
+    expect(high.maxRate).toBe(0.7);
+    expect(high.maxFee).toBe(11_200_000);
   });
 
   it("매매 4천만 → 0.6%, cap 25만원", () => {
@@ -157,6 +172,21 @@ describe("calculateBrokerageFee", () => {
     });
     expect(result.maxRate).toBe(0.3);
     expect(result.maxFee).toBe(900_000);
+  });
+
+  it("전세 13억 → 0.5%, 16억 → 0.6%", () => {
+    const mid = calculateBrokerageFee({
+      transactionType: "jeonse",
+      transactionAmount: 1_300_000_000,
+    });
+    const high = calculateBrokerageFee({
+      transactionType: "jeonse",
+      transactionAmount: 1_600_000_000,
+    });
+    expect(mid.maxRate).toBe(0.5);
+    expect(mid.maxFee).toBe(6_500_000);
+    expect(high.maxRate).toBe(0.6);
+    expect(high.maxFee).toBe(9_600_000);
   });
 
   it("월세 보증금 1천만, 월세 50만 → 기준금액 계산", () => {
