@@ -11,9 +11,13 @@ const notoSansKr = Noto_Sans_KR({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://budongsan-calc.vercel.app"),
   title: {
     default: "부동산 갈아타기 계산기 | 매도·매수·대출·세금 한번에",
     template: "%s | 부동산 갈아타기 계산기",
+  },
+  alternates: {
+    canonical: "/",
   },
   description:
     "집 팔고 더 큰 집 갈 수 있을까? 매도·매수·대출·세금·중개수수료·부족현금을 한 번에 계산하는 부동산 갈아타기 계산기. DSR, LTV, 취득세, 중개수수료까지.",

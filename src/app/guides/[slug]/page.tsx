@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getGuideArticle, guideArticles } from "@/lib/guideContent";
+import { JsonLd } from "@/components/seo/JsonLd";
+
+const BASE_URL = "https://budongsan-calc.vercel.app";
 
 interface GuidePageProps {
   params: Promise<{ slug: string }>;
@@ -22,9 +25,13 @@ export async function generateMetadata({ params }: GuidePageProps): Promise<Meta
   return {
     title: article.title,
     description: article.description,
+    alternates: {
+      canonical: `${BASE_URL}/guides/${article.slug}`,
+    },
     openGraph: {
       title: article.title,
       description: article.description,
+      url: `${BASE_URL}/guides/${article.slug}`,
       type: "article",
       locale: "ko_KR",
     },
@@ -39,6 +46,18 @@ export default async function GuideArticlePage({ params }: GuidePageProps) {
 
   return (
     <article className="max-w-3xl mx-auto space-y-6">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: article.title,
+          description: article.description,
+          url: `${BASE_URL}/guides/${article.slug}`,
+          dateModified: article.updatedAt,
+          inLanguage: "ko-KR",
+          mainEntityOfPage: `${BASE_URL}/guides/${article.slug}`,
+        }}
+      />
       <header className="hero-panel p-6 md:p-8">
         <Link href="/guides" className="text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-300">
           ← 가이드 목록

@@ -1,14 +1,28 @@
 import Link from "next/link";
 import { guideArticles } from "@/lib/guideContent";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata = {
   title: "부동산 가이드",
   description: "갈아타기, DSR, 취득세, 중개수수료 계산을 위한 부동산 가이드 모음입니다.",
+  alternates: {
+    canonical: "https://budongsan-calc.vercel.app/guides",
+  },
 };
 
 export default function GuidesPage() {
   return (
     <div className="max-w-4xl mx-auto space-y-8">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "부동산 가이드",
+          url: "https://budongsan-calc.vercel.app/guides",
+          inLanguage: "ko-KR",
+          description: metadata.description,
+        }}
+      />
       <section className="hero-panel p-6 md:p-8">
         <p className="eyebrow">부동산 가이드</p>
         <h1 className="mt-2 text-2xl md:text-4xl font-bold text-gray-900 dark:text-white">
