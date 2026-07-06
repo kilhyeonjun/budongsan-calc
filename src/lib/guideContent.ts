@@ -191,6 +191,67 @@ export const guideArticles: SeoGuideArticle[] = [
       { heading: "갈아타기 실무 포인트", body: ["잔금일이 매도·매수 사이에 어긋나면 브릿지 자금이 필요할 수 있습니다. LTV 계산 결과는 현금흐름표와 함께 검산해야 합니다."] },
     ],
   },
+
+  {
+    slug: "stress-dsr-calculator-guide",
+    title: "스트레스 DSR 계산 전 확인할 것",
+    description: "금리 상승과 심사 보수성을 반영해 DSR 여유를 점검하는 방법입니다.",
+    updatedAt: "2026-07-06",
+    tags: ["스트레스 DSR", "DSR", "대출심사"],
+    relatedCalculator: { href: "/calculators/dsr", label: "DSR 계산기" },
+    sections: [
+      { heading: "기본 DSR만 보면 부족할 수 있습니다", body: ["대출 심사에서는 현재 금리와 현재 상환액만 보는 것이 아니라 금리 상승, 소득 인정 방식, 기존 대출 만기 산정 방식에 따라 실제 여유가 줄어들 수 있습니다.", "DSR 계산기의 보수 계산 가산율은 신규 대출 상환액을 더 크게 잡아 40% 기준 여유가 얼마나 줄어드는지 확인하는 용도입니다."], bullets: ["기본 DSR", "보수 계산 DSR", "40% 기준 여유/초과 금액"] },
+      { heading: "어떤 가산율을 넣을까요", body: ["처음에는 10% 정도를 넣어 보고, 금리 상승이 걱정되면 15~20%까지 높여서 비교해보는 방식이 현실적입니다. 정확한 스트레스 금리 산식은 상품과 시점에 따라 달라질 수 있으므로 은행 심사 전 사전 점검용으로 봐야 합니다."] },
+    ],
+  },
+  {
+    slug: "couple-income-dsr-guide",
+    title: "부부합산 DSR 계산 방법",
+    description: "부부합산 소득으로 주택담보대출 DSR을 볼 때 기존 대출과 소득증빙을 함께 확인하는 방법입니다.",
+    updatedAt: "2026-07-06",
+    tags: ["부부합산", "DSR", "주담대"],
+    relatedCalculator: { href: "/calculators/dsr", label: "DSR 계산기" },
+    sections: [
+      { heading: "부부합산은 소득증빙이 먼저입니다", body: ["부부합산 DSR은 단순히 두 사람의 월급을 더하는 문제가 아닙니다. 은행이 인정하는 근로소득, 사업소득, 기타소득 기준과 기존 대출 원리금이 함께 반영됩니다."], bullets: ["각자 소득증빙 가능 여부", "각자 기존 신용대출·마이너스통장", "공동명의·채무자 구성"] },
+      { heading: "기존 대출을 빠뜨리지 마세요", body: ["자동차 할부, 신용대출, 학자금 대출 등도 DSR에 영향을 줄 수 있습니다. 갈아타기 전에는 부부 각각의 연간 원리금 상환액을 합산해 보수적으로 입력하는 편이 안전합니다."] },
+    ],
+  },
+  {
+    slug: "monthly-rent-brokerage-fee-guide",
+    title: "월세 중개수수료 계산 방법",
+    description: "보증금과 월세를 환산보증금으로 바꿔 월세 중개수수료 상한액을 계산하는 방법입니다.",
+    updatedAt: "2026-07-06",
+    tags: ["월세", "중개수수료", "환산보증금"],
+    relatedCalculator: { href: "/calculators/brokerage-fee", label: "중개수수료 계산기" },
+    sections: [
+      { heading: "월세는 보증금만 보지 않습니다", body: ["월세 중개수수료는 보증금에 월세를 일정 배수로 환산한 금액을 더해 거래금액을 계산합니다. 그래서 보증금이 낮아도 월세가 높으면 기준 금액이 커질 수 있습니다."], bullets: ["보증금", "월세", "환산 기준 금액", "거래금액별 상한요율"] },
+      { heading: "부가세와 협의액 확인", body: ["계산 결과는 상한액입니다. 실제 중개보수는 상한 이내에서 협의할 수 있고, 일반과세 사업자인 중개사무소는 부가세가 추가될 수 있습니다."] },
+    ],
+  },
+  {
+    slug: "apartment-acquisition-tax-guide",
+    title: "아파트 취득세 계산 체크리스트",
+    description: "아파트 매수 전 주택가격, 면적, 주택 수, 조정대상지역 여부로 취득세를 보수적으로 점검하는 방법입니다.",
+    updatedAt: "2026-07-06",
+    tags: ["아파트 취득세", "취득세", "주택매수"],
+    relatedCalculator: { href: "/calculators/acquisition-tax", label: "취득세 계산기" },
+    sections: [
+      { heading: "취득세는 잔금 현금 계획에 바로 영향", body: ["아파트 취득세는 잔금 직후 신고·납부해야 하는 비용이라 대출 가능액과 별도로 현금 계획에 넣어야 합니다. 취득세, 지방교육세, 농어촌특별세를 합산해서 봐야 실제 부족 현금을 놓치지 않습니다."], bullets: ["주택 가격", "전용면적 85㎡ 초과 여부", "취득 후 주택 수", "조정대상지역 여부"] },
+      { heading: "감면·특례는 별도 확인", body: ["생애최초 감면, 일시적 2주택, 상속·증여·분양권 등은 일반 간이 계산과 다를 수 있습니다. 계산기는 사전 추정용으로 쓰고 잔금 전에는 지자체나 세무 전문가 확인이 안전합니다."] },
+    ],
+  },
+  {
+    slug: "first-home-ltv-guide",
+    title: "생애최초 LTV 한도 확인 방법",
+    description: "생애최초·무주택 조건에서 LTV를 볼 때 담보가치, DSR, 정책대출 조건을 함께 확인하는 방법입니다.",
+    updatedAt: "2026-07-06",
+    tags: ["생애최초", "LTV", "대출한도"],
+    relatedCalculator: { href: "/calculators/ltv", label: "LTV 계산기" },
+    sections: [
+      { heading: "LTV만 높아도 DSR이 막을 수 있습니다", body: ["생애최초나 무주택 조건에서 LTV 우대가 있더라도 실제 대출액은 DSR, 소득, 신용, 담보가치, 상품 한도에 의해 줄어들 수 있습니다. LTV 계산 후 반드시 DSR을 함께 확인하세요."], bullets: ["담보 기준가", "선순위 대출", "DSR 40% 기준", "정책대출 상품 한도"] },
+      { heading: "담보 기준가를 보수적으로 보세요", body: ["은행은 매수가 그대로가 아니라 KB시세나 감정가 등 별도 담보 기준을 적용할 수 있습니다. 매수가보다 낮은 기준가를 넣어도 실행 가능한지 확인하면 잔금 리스크를 줄일 수 있습니다."] },
+    ],
+  },
 ];
 
 export function getGuideArticle(slug: string) {
