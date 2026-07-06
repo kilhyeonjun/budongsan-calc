@@ -35,6 +35,18 @@ describe("calculateDsr", () => {
     });
     expect(result.riskLevel).toBe("danger");
   });
+
+  it("보수 계산 가산율을 신규 대출 상환액에만 반영", () => {
+    const result = calculateDsr({
+      annualIncome: 100_000_000,
+      existingAnnualRepayment: 10_000_000,
+      newAnnualRepayment: 20_000_000,
+      stressBufferPercent: 10,
+    });
+    expect(result.dsrRatio).toBe(30);
+    expect(result.stressDsrRatio).toBe(32);
+    expect(result.stressMarginFromLimit).toBe(8_000_000);
+  });
 });
 
 describe("calculateLtv", () => {

@@ -10,6 +10,7 @@ export default function DsrPage() {
     annualIncome: 100_000_000,
     existingAnnualRepayment: 12_000_000,
     newAnnualRepayment: 28_600_000,
+    stressBufferPercent: 10,
   });
   const [result, setResult] = useState<DsrResult | null>(null);
 
@@ -49,6 +50,14 @@ export default function DsrPage() {
             <span className="text-sm text-gray-500">원</span>
           </div>
         </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">보수 계산 가산율</label>
+          <div className="flex items-center gap-2">
+            <input type="number" value={input.stressBufferPercent ?? 0} onChange={(e) => setInput({ ...input, stressBufferPercent: Number(e.target.value) })} className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500" step={1} />
+            <span className="text-sm text-gray-500">%</span>
+          </div>
+          <p className="mt-1 text-xs text-gray-400">금리 상승·심사 보수성을 감안해 신규 대출 상환액을 더 크게 잡아봅니다.</p>
+        </div>
         <button onClick={handleCalculate} className="w-full py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors">DSR 계산하기</button>
       </div>
 
@@ -61,6 +70,8 @@ export default function DsrPage() {
           <div className="bg-white border border-gray-200 rounded-xl p-5 text-sm space-y-2">
             <p>총 연간 원리금 상환액: <strong>{(result.totalAnnualRepayment / 10_000).toLocaleString()}만원</strong></p>
             <p>40% 기준 여유/초과: <strong className={result.marginFromLimit >= 0 ? "text-green-700" : "text-red-700"}>{(result.marginFromLimit / 10_000).toLocaleString()}만원</strong></p>
+            <p>보수 계산 DSR: <strong className={result.stressDsrRatio <= 40 ? "text-green-700" : "text-red-700"}>{result.stressDsrRatio}%</strong></p>
+            <p>보수 계산 40% 기준 여유/초과: <strong className={result.stressMarginFromLimit >= 0 ? "text-green-700" : "text-red-700"}>{(result.stressMarginFromLimit / 10_000).toLocaleString()}만원</strong></p>
           </div>
           <AdSlot slot="afterResult" className="my-4" />
         </>

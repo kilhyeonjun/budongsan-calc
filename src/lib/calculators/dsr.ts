@@ -10,6 +10,8 @@ export interface DsrInput {
   existingAnnualRepayment: number;
   /** 신규 대출 연간 원리금 상환액 (원) */
   newAnnualRepayment: number;
+  /** 보수 계산용 신규 대출 상환액 가산율 (%) */
+  stressBufferPercent?: number;
 }
 
 export interface DsrResult {
@@ -21,10 +23,14 @@ export interface DsrResult {
   riskLevel: "safe" | "caution" | "danger";
   /** 규제 기준 40% 기준 여유/초과 금액 (원) */
   marginFromLimit: number;
+  /** 보수 계산 DSR 비율 (%) */
+  stressDsrRatio: number;
+  /** 보수 계산 40% 기준 여유/초과 금액 (원) */
+  stressMarginFromLimit: number;
 }
 
 export function calculateDsr(input: DsrInput): DsrResult {
-  const { annualIncome, existingAnnualRepayment, newAnnualRepayment } = input;
+  const { annualIncome, existingAnnualRepayment, newAnnualRepayment, stressBufferPercent = 0 } = input;
 
   if (annualIncome <= 0) {
     throw new Error("연소득은 0보다 커야 합니다.");
@@ -32,6 +38,9 @@ export function calculateDsr(input: DsrInput): DsrResult {
 
   const totalAnnualRepayment = existingAnnualRepayment + newAnnualRepayment;
   const dsrRatio = Math.round((totalAnnualRepayment / annualIncome) * 10000) / 100;
+  const stressedNewRepayment = newAnnualRepayment * (1 + Math.max(stressBufferPercent, 0) / 100);
+  const stressedTotalAnnualRepayment = existingAnnualRepayment + stressedNewRepayment;
+  const stressDsrRatio = Math.round((stressedTotalAnnualRepayment / annualIncome) * 10000) / 100;
 
   let riskLevel: DsrResult["riskLevel"];
   if (dsrRatio <= 40) {
@@ -45,11 +54,14 @@ export function calculateDsr(input: DsrInput): DsrResult {
   // 40% 기준 여유/초과 금액
   const limit40 = annualIncome * 0.4;
   const marginFromLimit = Math.round(limit40 - totalAnnualRepayment);
+  const stressMarginFromLimit = Math.round(limit40 - stressedTotalAnnualRepayment);
 
   return {
     dsrRatio,
     totalAnnualRepayment,
     riskLevel,
     marginFromLimit,
+    stressDsrRatio,
+    stressMarginFromLimit,
   };
 }
