@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getGuideArticle, guideArticles } from "@/lib/guideContent";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { FeedbackCta } from "@/components/feedback/FeedbackCta";
 
 const BASE_URL = "https://budongsan-calc.vercel.app";
 
@@ -102,6 +103,8 @@ export default async function GuideArticlePage({ params }: GuidePageProps) {
           {article.relatedCalculator.label} 열기 →
         </Link>
       </aside>
+
+      <FeedbackCta compact />
     </article>
   );
 }

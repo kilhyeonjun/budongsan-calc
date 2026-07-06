@@ -1,3 +1,4 @@
+import { FeedbackCta } from "@/components/feedback/FeedbackCta";
 import { calculatorGuides, type CalculatorGuideId } from "@/lib/guideContent";
 
 interface CalculatorSeoGuideProps {
@@ -43,6 +44,8 @@ export function CalculatorSeoGuide({ id }: CalculatorSeoGuideProps) {
           ))}
         </div>
       </div>
+
+      <FeedbackCta />
     </section>
   );
 }
