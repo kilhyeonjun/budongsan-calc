@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { guideArticles } from "@/lib/guideContent";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 const CALCULATORS = [
   { href: "/calculators/home-upgrade", emoji: "🏠", label: "갈아타기", desc: "매도→매수 전체 자금 흐름" },
@@ -13,6 +14,30 @@ const CALCULATORS = [
 export default function HomePage() {
   return (
     <div className="space-y-10">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "WebSite",
+              name: "부동산계산기",
+              url: "https://budongsan-calc.vercel.app",
+              inLanguage: "ko-KR",
+              description: "매도·매수·대출·세금·중개수수료를 한 번에 계산하는 부동산 갈아타기 계산기입니다.",
+            },
+            {
+              "@type": "ItemList",
+              name: "부동산 계산기 목록",
+              itemListElement: CALCULATORS.map((calc, index) => ({
+                "@type": "ListItem",
+                position: index + 1,
+                name: `${calc.label} 계산기`,
+                url: `https://budongsan-calc.vercel.app${calc.href}`,
+              })),
+            },
+          ],
+        }}
+      />
       <section className="hero-panel overflow-hidden px-5 py-10 text-center md:px-8 md:py-14">
         <p className="eyebrow">부동산 갈아타기 의사결정 도구</p>
         <h1 className="mt-3 text-3xl md:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white">

@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { calculatorGuides } from "@/lib/guideContent";
 import ClientPage from "./ClientPage";
 
 const title = "부동산 중개수수료 계산기 | 매매·전세·월세 복비 계산";
 const description = "매매, 전세, 월세 거래금액별 부동산 중개수수료 상한액과 법인 부가세 포함 금액을 계산하세요.";
+const faq = calculatorGuides["brokerage-fee"].faq;
 const url = "https://budongsan-calc.vercel.app/calculators/brokerage-fee";
 
 export const metadata: Metadata = {
@@ -26,14 +28,29 @@ export default function Page() {
       <JsonLd
         data={{
           "@context": "https://schema.org",
-          "@type": "WebApplication",
-          name: "부동산 중개수수료 계산기",
-          url,
-          applicationCategory: "FinanceApplication",
-          operatingSystem: "Web",
-          inLanguage: "ko-KR",
-          description,
-          offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
+          "@graph": [
+            {
+              "@type": "WebApplication",
+              name: "부동산 중개수수료 계산기",
+              url,
+              applicationCategory: "FinanceApplication",
+              operatingSystem: "Web",
+              inLanguage: "ko-KR",
+              description,
+              offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
+            },
+            {
+              "@type": "FAQPage",
+              mainEntity: faq.map((item) => ({
+                "@type": "Question",
+                name: item.question,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: item.answer,
+                },
+              })),
+            },
+          ],
         }}
       />
       <ClientPage />
