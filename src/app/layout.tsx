@@ -52,6 +52,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className={`${notoSansKr.variable} h-full antialiased`}>
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2359605109038006"
+          crossOrigin="anonymous"
+        ></script>
+      </head>
       <body className="min-h-full flex flex-col font-[family-name:var(--font-noto-sans-kr)]">
         <Header />
         <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
