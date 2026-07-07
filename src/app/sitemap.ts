@@ -14,6 +14,7 @@ const staticRoutes = [
   { route: "/calculators/brokerage-fee", priority: 0.8, changeFrequency: "weekly" as const },
   { route: "/guides", priority: 0.8, changeFrequency: "weekly" as const },
   { route: "/about", priority: 0.6, changeFrequency: "monthly" as const },
+  { route: "/contact", priority: 0.5, changeFrequency: "yearly" as const },
   { route: "/disclaimer", priority: 0.4, changeFrequency: "yearly" as const },
   { route: "/privacy", priority: 0.4, changeFrequency: "yearly" as const },
 ];

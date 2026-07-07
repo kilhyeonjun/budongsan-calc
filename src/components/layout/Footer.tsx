@@ -35,6 +35,7 @@ export function Footer() {
             <p className="text-sm font-semibold text-gray-900 dark:text-gray-50">안내</p>
             <ul className="mt-2 space-y-1">
               <li><Link href="/about" className="text-sm text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-200">사이트 소개</Link></li>
+              <li><Link href="/contact" className="text-sm text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-200">문의</Link></li>
               <li><Link href="/disclaimer" className="text-sm text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-200">면책조항</Link></li>
               <li><Link href="/privacy" className="text-sm text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-200">개인정보처리방침</Link></li>
               <li><a href={FEEDBACK_FORM_URL} target="_blank" rel="noopener noreferrer" className="text-sm text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-200">피드백/오류 제보</a></li>
